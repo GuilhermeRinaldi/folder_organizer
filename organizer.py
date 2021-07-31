@@ -42,6 +42,7 @@ def foldername(name,is_file):
 with os.scandir(path) as it:
     for entry in it:
         if not entry.name.startswith('.'):
+            print('d')
             try:
                 move_to_new_folder(entry.path, make_folder(foldername(entry.name,entry.is_file)))
             except:
