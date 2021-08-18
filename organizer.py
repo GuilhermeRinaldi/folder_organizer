@@ -1,6 +1,16 @@
 
 import os, shutil, re, time
 
+"""
+        1 - tela para instalação
+            #selecionar os caminhos 
+            #selecionar as pastas
+            #seleecionar execução unica ou perene 
+        
+
+"""
+
+
 paths = ('C:\\Users\\**\\Downloads\\','C:\\Users\\**\\Documents')# caminhos das pastas que se deseja organizar |
 
 types = {'txt':'text', # extensões : pasta | 
