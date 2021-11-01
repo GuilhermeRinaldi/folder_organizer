@@ -1,21 +1,60 @@
 
 import PySimpleGUI as sg
-#set the theme for the screen/window
+
+from organizer import *
+
+user = os.getcwd().split("\\")[2] # captura o nome de usario do sistema 
+
+btnPath = {'Downloads':'C:/Users/'+ user + '/Downloads',
+           'Documents':'C:/Users/'+ user + '/Documents',
+           'Desktop':'C:/Users/'+ user + '/Desktop',
+           'Pictures':'C:/Users/'+ user + '/Pictures',
+           'Videos':'C:/Users/'+ user + '/Videos', 
+           'Musicas':'C:/Users/'+ user + '/Musicas'}
+
+listPath = [] # caminhos das pastas que se deseja organizar |
+
 sg.theme("DarkGrey5")
-#define layout
-sz=(10,5)
-pathSelection =[[sg.Checkbox('Download', key='Download'),sg.Checkbox('Documents', key='Documents'),sg.Checkbox('Desktop', key='Desktop')],
-                [sg.Input( size=(39,10) ,background_color='grey'),sg.Button('+',size=(2,1))]]
 
-pathList = [[sg.Listbox(["s","s"],size=(42,5),background_color='grey')]]
+pathSelection =[[sg.Button('Download'), sg.Button('Documents'), sg.Button('Desktop'), sg.Button('Pictures'), sg.Button('Videos'), sg.Button('Musicas')],
+                [sg.InputText('C:/Users/'+ user + '/', key='inputPath',size=(39,10), background_color='grey'),sg.FolderBrowse('🔍',font=(2),key='browse'),
+                sg.Button('➕',font=(2), key = 'add' ),sg.Button('✖️',font=(2), key = 'del' )]]
 
-actions = [[sg.Button('Uninstall',size=(18,1)),sg.Button('Execute',size=(18,1))]]
+pathList = [sg.Listbox(listPath ,expand_x = False, size= (56,5), background_color='grey', key ='listPath')]
 
-config = [[sg.Checkbox('keep executing', disabled=True,key='keepExecuting')]]
+actions = [sg.Button('run',expand_x = True,key='run')]
 
-layout = [pathSelection,pathList,actions,config]
+layout = [pathSelection,pathList,actions]
 
-window =sg.Window("Folder organizer",layout)
-event,values=window.read()
+window =sg.Window('Folder organizer',layout)
+
+while True:
+
+    event,values=window.read()
+
+    if event == sg.WIN_CLOSED or event == 'Exit':
+        break
+
+    #Preselect path    
+    if event in btnPath:
+        window['inputPath'].update(btnPath[event])
+
+    # add path in listpath
+    if event == 'add':
+        listPath.append(values['inputPath'])
+        window['listPath'].update(listPath)
+
+    if event == 'del':
+        try:
+            print(window['listPath'].get_indexes()[0])
+            del listPath[window['listPath'].get_indexes()[0]]
+            window['listPath'].update(listPath)
+            print(listPath)
+        except:
+            pass
+
+    if event == 'run':
+        print(window['listPath'].get_list_values())    
+        organizer(window['listPath'].get_list_values())        
 
 window.close()

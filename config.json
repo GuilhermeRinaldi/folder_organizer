@@ -1,0 +1,22 @@
+{
+	"keep":false,
+
+	"paths":["C:/Users/guilh/Pictures","C:/Users/guilh/Pictures"], 
+
+	"types":{"txt":"text",
+         	 "pdf":"pdf",
+             "mp3":"audio",
+             "tex":"latex",
+             "srt":"movie and show",
+			 "image":["png", "jpg","jpeg", "bmp", "gif", "raw"],
+			 "video":["mov", "mp4", "avi", "flv","mkv"],
+			 "document":["doc", "docx"],
+			 "spreadsheet":["xls", "xlsx"],
+			 "presentation":["ppt", "pptx"],
+			 "code":["py", "cs", "js", "php", "html", "sql", "css"],
+			 "executable":["exe", "msi"],
+			 "compressed":["rar","zip"]
+			}
+
+}
+
