@@ -1,11 +1,11 @@
 
-import os, shutil, re, time # caminhos, pastas e arquivos | criar e mover | regex |
+import os, shutil, re
 
-types = {"txt":"text",
+types = {"text":"txt",
          "pdf":"pdf",
-         "mp3":"audio",
-         "tex":"latex",
-         "srt":"movie and show",
+         "audio":"mp3",
+         "latex":"tex",
+         "movie and show":"srt",
          "image":["png", "jpg","jpeg", "bmp", "gif", "raw"],
          "video":["mov", "mp4", "avi", "flv","mkv"],
          "document":["doc", "docx"],
@@ -16,38 +16,40 @@ types = {"txt":"text",
          "compressed":["rar","zip"]
             }
 
-show_movie_regex = re.compile(r'\d{3, 4}[pP]|[sS]\d{1,2}[eE]\d{1,2}') #regex para identificar séries e filmes | 
+showMovieRegex = re.compile(r'\d{3,4}[pP]|[sS]\d{1,2}[eE]\d{1,2}') 
 
-def make_folder(foldername,path): # cria pastas |
+def makeFolder(foldername,path): 
     os.chdir(path)
-    if os.path.exists(foldername) == True: # verifica a existencia da pasta |
-        return os.getcwd() + os.sep + str(foldername) # retorna o caminho da pasta (os.sep = \) |
+    if os.path.exists(foldername) == True: 
+        return os.getcwd() + os.sep + str(foldername) 
     else:
-        os.mkdir(str(foldername)) # cria pasta caso nao exista |
+        os.mkdir(str(foldername)) 
         return os.getcwd() + os.sep + str(foldername)
 
-def move_to_new_folder(src_path,path_to_new_folder): # move os arquivos para as suas pastas |
+def moveNewFolder(srcPath,pathNewFolder): 
     try:
-        shutil.move(src_path, path_to_new_folder)
+        shutil.move(srcPath, pathNewFolder)
     except:
         pass
 
-def foldername(name): # identifica a pasta para qual deve ir |
-    if show_movie_regex.search(name): # verfica se esta dentro do regex 
+def folderName(name): 
+    if showMovieRegex.search(name): 
         return 'movie and show'
     else:
         for value in types.items(): 
-            if name[name.rindex('.')+1:] in value[1]: # separa a extensão e associa a uma pasta de types |
-                return value[0] # retorna a pasta |
+            if name[name.rindex('.')+1:] in value[1]:
+                return value[0] 
         return 'other'
 
 
 def organizer(paths): 
     for path in paths:
-        with os.scandir(path) as it: # lista as pastas e arquivos do path | 
+        with os.scandir(path) as it:
             for entry in it:
-                if not entry.name.startswith('.'): # ignora pastas ocultas |
+               
+                if not entry.name.startswith('.') and entry.is_file():
+                    print(entry.name)
                     try:
-                        move_to_new_folder(entry.path, make_folder(foldername(entry.name),path)) 
+                        moveNewFolder(entry.path, makeFolder(folderName(entry.name),path)) 
                     except:
                         pass

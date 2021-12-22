@@ -3,21 +3,24 @@ import PySimpleGUI as sg
 
 from organizer import *
 
-user = os.getcwd().split("\\")[2] # captura o nome de usario do sistema 
+localWd = os.getcwd()
+
+user = os.getcwd().split("\\")[2] 
+
 
 btnPath = {'Downloads':'C:/Users/'+ user + '/Downloads',
            'Documents':'C:/Users/'+ user + '/Documents',
            'Desktop':'C:/Users/'+ user + '/Desktop',
            'Pictures':'C:/Users/'+ user + '/Pictures',
            'Videos':'C:/Users/'+ user + '/Videos', 
-           'Musicas':'C:/Users/'+ user + '/Musicas'}
+           'Music':'C:/Users/'+ user + '/Music'}
 
-listPath = [] # caminhos das pastas que se deseja organizar |
+listPath = [] 
 
 sg.theme("DarkGrey5")
 
-pathSelection =[[sg.Button('Download'), sg.Button('Documents'), sg.Button('Desktop'), sg.Button('Pictures'), sg.Button('Videos'), sg.Button('Musicas')],
-                [sg.InputText('C:/Users/'+ user + '/', key='inputPath',size=(39,10), background_color='grey'),sg.FolderBrowse('🔍',font=(2),key='browse'),
+pathSelection =[[sg.Button('Downloads'), sg.Button('Documents'), sg.Button('Desktop'), sg.Button('Pictures'), sg.Button('Videos'), sg.Button('Music')],
+                [sg.InputText(localWd, key='inputPath',size=(39,10), background_color='grey'),sg.FolderBrowse('🔍',font=(2),key='browse'),
                 sg.Button('➕',font=(2), key = 'add' ),sg.Button('✖️',font=(2), key = 'del' )]]
 
 pathList = [sg.Listbox(listPath ,expand_x = False, size= (56,5), background_color='grey', key ='listPath')]
@@ -35,11 +38,9 @@ while True:
     if event == sg.WIN_CLOSED or event == 'Exit':
         break
 
-    #Preselect path    
     if event in btnPath:
         window['inputPath'].update(btnPath[event])
 
-    # add path in listpath
     if event == 'add':
         listPath.append(values['inputPath'])
         window['listPath'].update(listPath)
