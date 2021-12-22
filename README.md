@@ -3,6 +3,9 @@
 ![](https://badgen.net/badge/python/3.8.8/blue?icon=v) ![](https://badgen.net/badge/pysimpleGUI/tkinter/blue?icon=v)
 
 ------
+
+![1](https://user-images.githubusercontent.com/37752370/147109394-21557ccf-11b1-4f1b-bb1e-f7104a19f7c7.gif)
+
 ## Funcionamento
 
 ### Identificação e destino de arquivos
@@ -26,7 +29,7 @@ types = {"txt":"text",
            }
 ```
 
-O 
+Está definido um regex para arquivos de filmes e series `showMovieRegex = re.compile(r'\d{3,4}[pP]|[sS]\d{1,2}[eE]\d{1,2}')` e para retirar esse recurso basta alterar a função de:
 
 ```python
 def folderName(name): 
@@ -38,7 +41,7 @@ def folderName(name):
                 return value[0] 
         return 'other'
 ```
-
+Para:
 ```python
 def folderName(name): 
   for value in types.items(): 
@@ -47,30 +50,31 @@ def folderName(name):
   return 'other'
 ```
 
-### uso 
+### Botões predefinidos
 
-![1](https://user-images.githubusercontent.com/37752370/147011877-99b0cd17-d60c-4a95-a20b-8398d3ed6357.gif)
+![botoes](https://user-images.githubusercontent.com/37752370/147113342-e873cc9e-b79b-4741-9eb7-b9163133b53d.png)
 
-para as edições dos caminhos que determinados arquivos devem ir referente a suas extensões é uma questão de alterar o dicionário types e suas tuplas para as pastas que devem receber o monitoramento alterar paths.
+Esses botões adicionam caminhos a entrada e são definidos no arquivo `tela.py` por um dicionario que relaciona **Nome : Caminho** 
 
-movie and show
+```python
+user = os.getcwd().split("\\")[2] 
 
-acredito que essa pode ser a mais descartável das pastas logo sua retirada pode ser feita alterando a extensão 'srt' em types e retirando a verificação na função foldername.
+btnPath = {'Downloads':'C:/Users/'+ user + '/Downloads',
+           'Documents':'C:/Users/'+ user + '/Documents',
+           'Desktop':'C:/Users/'+ user + '/Desktop',
+           'Pictures':'C:/Users/'+ user + '/Pictures',
+           'Videos':'C:/Users/'+ user + '/Videos', 
+           'Music':'C:/Users/'+ user + '/Music'}
+```
 
-aviso 
+## Utilização
 
-pastas com nome contendo ponto acabam enviadas para pasta other.
+### Caminhos
+São aceitos caminhos separados com / ou \\.
 
+### 
 
-paths and extensions
-
-to edit the paths that certain files should go regarding their extensions, it is a matter of changing the types dictionary and its tuples for the folders that should receive the monitoring change paths.
-
-movie and show
+## Uso
 
 
-I believe this may be the most disposable of folders so its removal can be done by changing the 'srt' extension in types and removing the check in the foldername function.
 
-Notice
-
-folders with name containing dot end up sent to other folder.
