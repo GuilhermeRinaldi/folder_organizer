@@ -4,6 +4,8 @@
 
 ------
 
+## Utilização
+
 ![1](https://user-images.githubusercontent.com/37752370/147109394-21557ccf-11b1-4f1b-bb1e-f7104a19f7c7.gif)
 
 ## Funcionamento
@@ -72,7 +74,6 @@ btnPath = {'Downloads':'C:/Users/'+ user + '/Downloads',
 ### Caminhos
 São aceitos caminhos separados com / ou \\.
 
-### 
 
 ## Uso
 
