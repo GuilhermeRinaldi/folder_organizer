@@ -34,7 +34,7 @@
 1. [Python](https://www.python.org/downloads/)
 	- [PysimpleGui](https://pysimplegui.readthedocs.io/en/latest/)
 	- [os]()
-	- [shutil]()![147109394-21557ccf-11b1-4f1b-bb1e-f7104a19f7c7](https://user-images.githubusercontent.com/37752370/147364304-a057717c-f858-4306-a494-69ded6d5eefb.gif)
+	- [shutil]()
 
 	- [re]()
 
@@ -115,6 +115,14 @@ Ou
 
 Baixe o `folderOrganizer.exe` e execute
 
+## Como gerar um executavel
+
+Instale o pyinstaller e Execute o comando:
+
+```
+pyinstaller --onefile -w window.py
+```
+O executavel vai estár na pasta dist
 
 ## Licença 
 
