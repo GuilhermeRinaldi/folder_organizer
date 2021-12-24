@@ -17,12 +17,12 @@
   - [Identificação e destino de arquivos](#identificação-e-destino-de-arquivos)
   - [Botões predefinidos](#botões-predefinidos)
 - [Como Usar](#como-usar)
-- [Como gerar um executavel](#como-gerar-um-executavel)
+- [Como gerar um executável](#como-gerar-um-executável)
  
 ## Descrição do projeto 
 
 <p align="justify">
-	Organiza arquivos em pastas baseado em suas extenções.
+	Organiza arquivos em pastas baseado em suas extensões.
 </p>
 
 ## Layout 
@@ -33,17 +33,17 @@
 
 1. [Python](https://www.python.org/downloads/)
 	- [PysimpleGui](https://pysimplegui.readthedocs.io/en/latest/)
-	- [os]()
-	- [shutil]()
-
-	- [re]()
+	- [os](https://docs.python.org/3/library/os.html)
+	- [shutil](https://docs.python.org/3/library/shutil.html)
+	- [re](https://docs.python.org/3/library/re.html)
+	- [pyinstaller(opcional)](https://www.pyinstaller.org/)
 
 
 ## Funcionamento
 
 ### Identificação e destino de arquivos
 
-O arquivo  `organizer.py` carrega as funções que controlam os destinos e identificação dos arquivos, possui uma variavel que carrega um dicionario com a relação **nome da pasta : extenções** onde ficam definidos os destinos para cada tipo de arquivo.
+O arquivo  `organizer.py` carrega as funções que controlam os destinos e identificação dos arquivos, possui uma variável que carrega um dicionário com a relação **nome da pasta : extensões** onde ficam definidos os destinos para cada tipo de arquivo.
 
 ```python
 types = {"txt":"text",
@@ -87,7 +87,7 @@ def folderName(name):
 
 ![botoes](https://user-images.githubusercontent.com/37752370/147113342-e873cc9e-b79b-4741-9eb7-b9163133b53d.png)
 
-Esses botões adicionam caminhos a entrada e são definidos no arquivo `window.py` por um dicionario que relaciona **Nome do botão : Caminho** 
+Esses botões adicionam caminhos a entrada e são definidos no arquivo `window.py` por um dicionário que relaciona **Nome do botão : Caminho** 
 
 ```python
 user = os.getcwd().split("\\")[2] 
@@ -115,18 +115,20 @@ Ou
 
 Baixe o `folderOrganizer.exe` e execute
 
-## Como gerar um executavel
-
+## Como gerar um executável
+```
+pip install pyinstaller
+```
 Instale o pyinstaller e Execute o comando:
 
 ```
 pyinstaller --onefile -w window.py
 ```
-O executavel vai estár na pasta dist
+O executável vai estár na pasta dist
 
 ## Licença 
 
 The [MIT License]() (MIT)
 
-Copyright © Ano - Titulo do Projeto
+Copyright © 2021 - Folder Organizer
                                                       
